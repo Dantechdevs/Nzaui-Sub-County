@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\OfficeController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -18,3 +20,7 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+Route::get('/admin/dashboard',[AdminController::class,'AdminDashboard'])->name('admin.dashboard');
+
+// office
+Route::get('/office/dashboard',[OfficeController::class,'OfficeDashboard'])->name('office.dashboard');
