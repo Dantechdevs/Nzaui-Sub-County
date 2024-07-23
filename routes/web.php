@@ -24,3 +24,6 @@ Route::get('/admin/dashboard',[AdminController::class,'AdminDashboard'])->name('
 
 // office
 Route::get('/office/dashboard',[OfficeController::class,'OfficeDashboard'])->name('office.dashboard');
+// End  group office middleware
+
+Route::get('/admin/login',[AdminController::class,'AdminLogin'])->name('admin.login');
