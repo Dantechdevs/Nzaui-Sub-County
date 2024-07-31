@@ -46,19 +46,20 @@ class AdminController extends Controller
         $data->email = $request->email;
         $data->phone = $request->phone;
         $data->address = $request->address;
-  
+
         if ($request->file('photo')){
           $file= $request->file('photo');
+          @unlink(public_path('upload/admin_images/'.$data->photo));
           $filename=date('YmdHi').$file->getClientOriginalName(); // 23232.dantechdevs.png
           $file->move(public_path('upload/admin_images'),$filename);
           $data['photo'] = $filename;
         }
           $data->save();
-          
+
           $notification = array(
             'message' => 'Admin Profile updated successfully',
             'alert type' => 'success'  );
             return redirect() ->back()->with($notification);
         }
-    
+
 }
