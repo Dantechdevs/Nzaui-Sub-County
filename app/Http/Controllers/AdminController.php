@@ -99,5 +99,12 @@ class AdminController extends Controller
     return redirect()->route('admin.dashboard')->with('success', 'Password changed successfully.');
 }
  // End Method
+public function AdminUpdatePassword(){
+    $id = Auth::user()->id;
+    $profileData = User::find($id);
+    return view('admin.admin_change_password',[
+        'profileData'=>$profileData
+    ]);
+}
 
 }

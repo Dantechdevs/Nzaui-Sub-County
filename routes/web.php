@@ -25,6 +25,7 @@ Route::get('/admin/logout', [AdminController::class,'AdminLogout'])->name('admin
 Route::get('/admin/profile',[AdminController::class, 'AdminProfile'])->name('admin.profile');
 Route::post('/admin/profile/store', [AdminController::class, 'AdminProfileStore'])->name('admin.profile.store');
 Route::post('/admin/change/password', [AdminController::class, 'AdminChangePassword'])->name('admin.change.password');
+Route::get('/admin/update/password', [AdminController::class, 'AdminUpdatePassword'])->name('admin.update.password');
 
 
 // office
