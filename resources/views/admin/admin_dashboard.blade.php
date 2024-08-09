@@ -54,7 +54,8 @@
 		<div class="page-wrapper">
 
 			<!-- partial:partials/_navbar.html -->
-      @include('admin.partials.navbar')
+        @include('admin.partials.navbar', ['profileData' => $profileData])
+
 
 @yield('admin')
 			<!-- partial:partials/_footer.html -->

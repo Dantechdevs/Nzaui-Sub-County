@@ -16,10 +16,7 @@
               </div>
 
               <div class="dropdown">
-
-
-                </a>
-
+                <!-- Dropdown content -->
               </div>
             </div>
 
@@ -60,6 +57,14 @@
           <div class="card">
             <div class="card-body">
 
+              @if($profileData)
+                  <h1>{{ $profileData->name }}</h1>
+                  <p>Email: {{ $profileData->email }}</p>
+                  <!-- Other profile data -->
+              @else
+                  <p>No profile data available.</p>
+              @endif
+
               <h6 class="card-title">Update Admin Profile</h6>
 
               <form method="POST" action="{{route('admin.profile.store')}}"
@@ -96,7 +101,6 @@
                   <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">Photo</label>
                     <img id ="ShowImage" class="wd-80 rounded-circle" src="{{(!empty($profileData->photo)) ? url('upload/admin_images/'.$profileData->photo) :url('upload/no_image.jpg')}}" alt="profile">
-
                 </div>
                 <button type="submit" class="btn btn-primary me-2">Save Changes</button>
                 <button class="btn btn-secondary">Cancel</button>
@@ -104,66 +108,26 @@
 
             </div>
           </div>
-                    <div class="ms-2">
-
-                    </div>
-                  </div>
-
-
-
-
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              </div>
-              <div class="card-footer">
-
-
-                </div>
-              </div>
-            </div>
+          <div class="ms-2">
+            <!-- Additional content -->
           </div>
-          <div class="col-md-12">
-
-
-                  </div>
-                  <div class="dropdown">
-
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="card-body">
-
-              </div>
-
-                </div>
+        </div>
       </div>
       <!-- middle wrapper end -->
       <!-- right wrapper start -->
-
       <!-- right wrapper end -->
     </div>
 
-     </div>
-        <script type="text/javascript">
-            $(document).ready(function(){
-              $('#image').change(function(e){
-                var reader = new Filereader()
-                reader.onload= function(e){
-                  $('#showImage').attr('src',e.target.result);
-                }
-                reader.readAsDataURL(e.target.files['0']);
-              });
-            });
-            </script>
-
-
-
-
-
-
-
+</div>
+<script type="text/javascript">
+    $(document).ready(function(){
+      $('#image').change(function(e){
+        var reader = new FileReader();
+        reader.onload= function(e){
+          $('#ShowImage').attr('src',e.target.result);
+        }
+        reader.readAsDataURL(e.target.files['0']);
+      });
+    });
+</script>
 @endsection

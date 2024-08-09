@@ -195,8 +195,15 @@
 						</li>
                          @php
 
-                             $id = Auth::user()->id;
-                             $data = App\Models\User::find($id);
+                       if (Auth::check())
+                       {
+                       $id = Auth::user()->id;
+                       $data = App\Models\User::find($id);
+                        }
+                        else {
+                         // Handle the case where the user is not authenticated
+                         $data = null; // or any default value
+                         }
                          @endphp
 
 
@@ -206,14 +213,18 @@
 							</a>
 							<div class="dropdown-menu p-0" aria-labelledby="profileDropdown">
 								<div class="d-flex flex-column align-items-center border-bottom px-5 py-3">
-									<div class="mb-3">
-										<img class="wd-80 ht-80 rounded-circle" src="{{(!empty($profileData->photo)) ? url('upload/admin_images/'.$profileData->photo) :url('upload/no_image.jpg')}}" alt="">
-									</div>
-									<div class="text-center">
-										<p class="tx-16 fw-bolder">{{ $profileData->name }}</p>
-										<p class="tx-12 text-muted">{{ $profileData->email }}</p>
-									</div>
-								</div>
+									@if($profileData)
+                         <div class="mb-3">
+                             <img class="wd-80 ht-80 rounded-circle" src="{{ !empty($profileData->photo) ? url('upload/admin_images/'.$profileData->photo) : url('upload/no_image.jpg') }}" alt="">
+                         </div>
+                         <div class="text-center">
+                             <p class="tx-16 fw-bolder">{{ $profileData->name }}</p>
+                            <p class="tx-12 text-muted">{{ $profileData->email }}</p>
+                         </div>
+                                @else
+                           <p class="text-center">User not logged in.</p>
+                                @endif
+						</div>
                 <ul class="list-unstyled p-1">
                   <li class="dropdown-item py-2">
                     <a href="{{route('admin.profile')}}" class="text-body ms-0">
@@ -222,9 +233,9 @@
                     </a>
                   </li>
                   <li class="dropdown-item py-2">
-                    <a href="javascript:;" class="text-body ms-0">
+                    <a href="{{route('admin.change.password')}}" class="text-body ms-0">
                       <i class="me-2 icon-md" data-feather="edit"></i>
-                      <span>Edit Profile</span>
+                      <span>Change Password</span>
                     </a>
                   </li>
                   <li class="dropdown-item py-2">
