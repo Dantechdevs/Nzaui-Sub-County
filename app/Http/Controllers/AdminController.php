@@ -33,14 +33,15 @@ class AdminController extends Controller
 
     public function AdminLogin()
     {
-        $profileData = Auth::user();
+       $profileData = Auth::user();
 
-    // Debugging statement
+    /*Debugging statement
     if (!$profileData)
     {
         dd('No user is logged in.');
     }
-    return view('admin.index', compact('profileData'));
+    */
+    return view('admin.index',compact('profileData'));
 
     }// End Method
 
